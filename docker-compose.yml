@@ -1,0 +1,15 @@
+version: '3'
+services:
+  starter:
+    build: .
+    container_name: 'starter'
+    ports:
+      - '8888:8888'
+    environment:
+      - TZ=Asia/Tokyo
+    volumes:
+      - ./opt:/home/jovyan/opt
+      - ./data:/home/jovyan/data
+      - ./src:/home/jovyan/src
+      - ./notebooks:/home/jovyan/notebooks
+    command: start-notebook.sh --NotebookApp.token=''
