@@ -13,15 +13,15 @@ RUN apt-get install -y vim less
 
 USER jovyan
 WORKDIR /home/jovyan
-ARG env_name=udacity
+ARG env_name=py38
 RUN conda create -yn ${env_name} python=3.8
 
 ENV CONDA_DEFAULT_ENV ${env_name}
 RUN echo "conda activate ${env_name}" >> ~/.bashrc
 ENV PATH /opt/conda/envs/${env_name}/bin:$PATH
-COPY requirements.txt ./
-SHELL ["conda", "run", "-n", "udacity", "/bin/bash", "-c"]
+COPY requirements_py38.txt ./
+SHELL ["conda", "run", "-n", "py38", "/bin/bash", "-c"]
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements_py38.txt
